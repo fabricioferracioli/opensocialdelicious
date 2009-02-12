@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+    <ModulePrefs title="My Delicious Bookmarks">
+        <Require feature="opensocial-0.7"/>
+    </ModulePrefs>
+    <Content type="html">
+        <![CDATA[
+
+        <script type="text/javascript" src="http://opensocialdelicious.googlecode.com/svn/trunk/js/prototype.js"></script>
+        <script type="text/javascript" src="http://opensocialdelicious.googlecode.com/svn/trunk/js/delicious.js"></script>
+
+        <div id="delicious">
+        </div>
+
+        <div id="user_data">
+        </div>
+        ]]>
+    </Content>
+</Module>
