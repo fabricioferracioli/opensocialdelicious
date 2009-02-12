@@ -6,8 +6,8 @@
     <Content type="html">
         <![CDATA[
 
-        <script type="text/javascript" src="http://opensocialdelicious.googlecode.com/svn/trunk/js/prototype.js"></script>
-        <script type="text/javascript" src="http://opensocialdelicious.googlecode.com/svn/trunk/js/delicious.js"></script>
+        <script type="text/javascript" src="http://github.com/fabricioferracioli/opensocialdelicious.git/js/prototype.js"></script>
+        <script type="text/javascript" src="http://github.com/fabricioferracioli/opensocialdelicious.git/js/delicious.js"></script>
 
         <div id="delicious">
         </div>
