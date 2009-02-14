@@ -3,6 +3,7 @@ var bookmarksShowed = 20;
 
 function makeJSONRequest(url, response, params)
 {
+    console.log(url);
     var params = {};
     params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.JSON;
     gadgets.io.makeRequest(url, response, params);
@@ -40,19 +41,23 @@ document.observe('dom:loaded', function(){
 });
 
 function processDeliciousUserBookmarks(bookmarks){
+    console.log(bookmarks);
     var jsondata = bookmarks.data;
-    bookmarks.each(function(jsondata){
-        a = new Element('a', {href: jsondata[u]}).update(jsondata[d]);
+    jsondata.each(function(jsdata){
+        console.log(jsdata);
+        a = new Element('a', {href: jsdata[u]}).update(jsdata[d]);
         $('delicious').insert(a);
-        $('delicious').insert(' -- saved '+jsondata[dt]);
+        $('delicious').insert(' -- saved '+jsdata[dt]);
         $('delicious').insert(new Element('br'));
-        $('delicious').insert(new Element('q').update(jsondata[n]));
+        $('delicious').insert(new Element('q').update(jsdata[n]));
         $('delicious').insert(new Element('br'));
     });
 }
 
 function processDeliciousUserInfo(info){
+    console.log(info);
     var jsondata = info.data;
+    console.log(jsondata);
     var person = opensocial.Person.getField(Person.Field.NAME);
     $('user_data').insert(person+' have '+jsondata[0][n]+' bookmaked items');
     $('user_data').insert(new Element('br'));
