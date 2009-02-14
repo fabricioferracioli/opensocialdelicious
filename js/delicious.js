@@ -3,7 +3,6 @@ var bookmarksShowed = 20;
 
 function makeJSONRequest(url, response, params)
 {
-    console.log(url);
     var params = {};
     params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.JSON;
     gadgets.io.makeRequest(url, response, params);
@@ -38,6 +37,7 @@ document.observe('dom:loaded', function(){
     params = {};
     /* requesting user information from delicious */
     makeJSONRequest(url+deliciousUsername, callback, params);
+    alert('PDL');
 });
 
 function processDeliciousUserBookmarks(bookmarks){
