@@ -58,7 +58,8 @@ function processDeliciousUserInfo(info){
     console.log(info);
     var jsondata = info.data;
     console.log(jsondata);
-    var person = opensocial.Person.getField(Person.Field.NAME);
+//     var person = opensocial.Person.getField(Person.Field.NAME);
+    var person = deliciousUsername;
     $('user_data').insert(person+' have '+jsondata[0][n]+' bookmaked items');
     $('user_data').insert(new Element('br'));
     $('user_data').insert('showing last '+bookmarksShowed);
