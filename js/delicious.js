@@ -40,7 +40,7 @@ document.observe('dom:loaded', function(){
 });
 
 function processDeliciousUserBookmarks(bookmarks){
-    var jsondata = elem.data;
+    var jsondata = bookmarks.data;
     bookmarks.each(function(jsondata){
         a = new Element('a', {href: jsondata[u]}).update(jsondata[d]);
         $('delicious').insert(a);
