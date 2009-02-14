@@ -8,20 +8,6 @@ function makeJSONRequest(url, response, params)
     gadgets.io.makeRequest(url, response, params);
 };
 
-// function response(obj) {
-//     var jsondata = obj.data;
-//     var html = "<strong>Values: </strong><br /><br />";
-//     // Returned JS object can be processed as an associative array
-//     for (var key in jsondata) {
-//         var item = jsondata[key];
-//         html += key + ": ";
-//         html += item + "<br />";
-//     }
-//     document.getElementById('content_div').innerHTML = html;
-// };
-// makeJSONRequest();
-// gadgets.json.parse(str);
-
 document.observe('dom:loaded', function(){
     /* user login at delicious */
     var url = 'http://feeds.delicious.com/v2/json/';
@@ -59,7 +45,7 @@ function processDeliciousUserInfo(info){
     console.log(info);
     var jsondata = info.data;
     console.log(jsondata);
-//     var person = opensocial.Person.getField(Person.Field.NAME);
+
     var person = deliciousUsername;
     $('user_data').insert(person+' have '+jsondata[0][n]+' bookmaked items');
     $('user_data').insert(new Element('br'));
