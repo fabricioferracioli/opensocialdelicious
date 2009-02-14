@@ -1,6 +1,20 @@
 var deliciousUsername = 'fabricioferracioli';
 var bookmarksShowed = 20;
 
+function makeCachedRequest(url, callback, params, refreshInterval) {
+    params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.JSON;
+    var ts = new Date().getTime();
+    var sep = "?";
+    if (refreshInterval && refreshInterval > 0) {
+        ts = Math.floor(ts / (refreshInterval * 1000));
+    }
+    if (url.indexOf("?") > -1) {
+        sep = "&";
+    }
+    url = [ url, sep, "nocache=", ts ].join("");
+    gadgets.io.makeRequest(url, callback, params);
+}
+
 function makeJSONRequest(url, response, params)
 {
     var params = {};
@@ -16,13 +30,13 @@ document.observe('dom:loaded', function(){
     params['count'] = bookmarksShowed;
     var callback = processDeliciousUserBookmarks;
     /* requesting the json from user bookmarks */
-    makeJSONRequest(url+deliciousUsername, callback, params);
+    makeCachedRequest(url+deliciousUsername, callback, params, 0);
 
     url = 'http://feeds.delicious.com/v2/json/userinfo/';
     callback = processDeliciousUserInfo;
     params = {};
     /* requesting user information from delicious */
-    makeJSONRequest(url+deliciousUsername, callback, params);
+    makeCachedRequest(url+deliciousUsername, callback, params, 0);
 });
 
 function processDeliciousUserBookmarks(bookmarks){
