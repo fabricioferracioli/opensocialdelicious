@@ -20,7 +20,6 @@ function makeJSONRequest(url, response, params)
     var params = {};
     params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.JSON;
     gadgets.io.makeRequest(url, response, params);
-    console.log('aqui!!!!');
 };
 
 document.observe('dom:loaded', function(){
@@ -40,10 +39,8 @@ document.observe('dom:loaded', function(){
 });
 
 function processDeliciousUserBookmarks(bookmarks){
-    console.log(bookmarks);
     var jsondata = bookmarks.data;
     jsondata.each(function(jsdata){
-        console.log(jsdata);
         a = new Element('a', {href: jsdata.u}).update(jsdata.d);
         $('delicious').insert(a);
         $('delicious').insert(' -- saved '+jsdata.dt);
@@ -54,9 +51,7 @@ function processDeliciousUserBookmarks(bookmarks){
 }
 
 function processDeliciousUserInfo(info){
-    console.log(info);
     var jsondata = info.data;
-    console.log(jsondata);
 
     var person = deliciousUsername;
     $('user_data').insert(person+' have '+jsondata[0].n+' bookmaked items');
