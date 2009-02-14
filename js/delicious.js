@@ -41,6 +41,7 @@ document.observe('dom:loaded', function(){
 });
 
 function processDeliciousUserBookmarks(bookmarks){
+    alert('aqui');
     console.log(bookmarks);
     var jsondata = bookmarks.data;
     jsondata.each(function(jsdata){
