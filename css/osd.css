@@ -1,0 +1,20 @@
+.bookmark_box
+{
+    width: 95%;
+    border: 2px #064780 solid;
+    color: #A0C2DE;
+}
+.url
+{
+    width: 100%;
+    border-bottom: 2px #064780 solid;
+    background: #CDEFFF;
+    color: #0854C7;
+}
+.foot
+{
+    border-top: 2px #064780 solid;
+    background: #CDEFFF;
+    color: #064780;
+    text-align: right;
+}

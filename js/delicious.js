@@ -41,12 +41,19 @@ document.observe('dom:loaded', function(){
 function processDeliciousUserBookmarks(bookmarks){
     var jsondata = bookmarks.data;
     jsondata.each(function(jsdata){
+        container = new Element('div', {class: 'bookmark_box'});
+        url_box = new Element('div', {class: 'url'});
+        descript = new Element('div', {class: 'description'});
+        foot = new Element('div', {class: 'foot'});
         a = new Element('a', {href: jsdata.u}).update(jsdata.d);
-        $('delicious').insert(a);
-        $('delicious').insert(' -- saved '+jsdata.dt);
-        $('delicious').insert(new Element('br'));
-        $('delicious').insert(new Element('q').update(jsdata.n));
-        $('delicious').insert(new Element('br'));
+        container.insert(url_box.insert(a));
+        container.insert(descript.insert(new Element('q').update(jsdata.n)));
+        container.insert(foot.insert('Saved: '+jsdata.dt));
+        $('delicious').insert(container);
+//         $('delicious').insert(' -- saved '+jsdata.dt);
+//         $('delicious').insert(new Element('br'));
+//         $('delicious').insert(new Element('q').update(jsdata.n));
+//         $('delicious').insert(new Element('br'));
     });
 }
 
