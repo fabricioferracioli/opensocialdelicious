@@ -7,7 +7,8 @@
         <![CDATA[
 
         <script type="text/javascript" src="http://github.com/fabricioferracioli/opensocialdelicious.git/js/prototype.js"></script>
-        <script type="text/javascript" src="http://github.com/fabricioferracioli/opensocialdelicious.git/js/delicious.js?cache=0"></script>
+        <script type="text/javascript" src="http://github.com/fabricioferracioli/opensocialdelicious.git/js/delicious.js"></script>
+        <link type="text/css" href="http://github.com/fabricioferracioli/opensocialdelicious.git/css/osd.css" rel="stylesheet">
 
         <div id="delicious">
             <h2>Minhas Bookmarks</h2>
