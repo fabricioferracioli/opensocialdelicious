@@ -22,15 +22,52 @@ function makeJSONRequest(url, response, params)
     gadgets.io.makeRequest(url, response, params);
 };
 
+function handlePopulateMyAppData(data)
+{
+    message = 'Your Delicious data was updated sucessfully!';
+    if (data.hadError())
+        message = 'An error occurred saving the data. Try again later.';
+    $('delicious').update(new Element('p').update(message));
+
+}
+
+function firstUsage()
+{
+    delicious_form = new Element('form', {name: 'deliciousInfo'});
+    label_username = new Element('label', {for: 'username'}).update('Delicious Username: ');
+    username = new Element('input', {type: 'text', name: 'deliciousUsername', id: 'username'});
+    label_qtd = new Element('label', {for: 'qtd'}).update('Showed Delicious Bookmarks: ');
+    num_bookmarks = new Element('input', {type: 'text', name: 'bookmarksShowed', id: 'qtd', value: 20});
+    send = new Element('input', {type: 'button', name: 'send', value: 'Send', id: ('sendbutton')});
+
+    delicious_form.insert(label_username);
+    delicious_form.insert(username);
+    delicious_form.insert(new Element('br'));
+    delicious_form.insert(label_qtd);
+    delicious_form.insert(num_bookmarks);
+    delicious_form.insert(new Element('br'));
+    delicious_form.insert(send);
+
+    $('delicious').insert(delicious_form);
+    $('sendbutton').observe('click', function(evt) {
+        req.add(req.newUpdatePersonAppDataRequest("VIEWER", "deliciousUsername", $F('username'));
+        req.add(req.newUpdatePersonAppDataRequest("VIEWER", "bookmarksShowed", $F('qtd'));
+        req.send(handlePopulateMyAppData, "update_appdata");
+    });
+}
+
 function setInitialDeliciousInfo(data)
 {
-    deliciousUsername = 'fabricioferracioli';
     if (data['deliciousUsername'] != '')
         deliciousUsername = data['deliciousUsername'];
 
-    bookmarksShowed = 20;
     if (data['bookmarksShowed'] != '')
         bookmarksShowed = data['bookmarksShowed'];
+
+    if (deliciousUsername == '' &&  bookmarksShowed == '')
+        firstUsage();
+    else
+        getDeliciousData();
 }
 
 function handleRequestMyData(data)
@@ -42,14 +79,8 @@ function handleRequestMyData(data)
     setInitialDeliciousInfo(deliciousData[me.getId()]);
 }
 
-document.observe('dom:loaded', function(){
-
-    var req = opensocial.newDataRequest();
-    var fields = ['deliciousUsername', 'bookmarksShowed'];
-    req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.VIEWER), "viewer");
-    req.add(req.newFetchPersonAppDataRequest("VIEWER", fields), "viewer_data");
-    req.send(handleRequestMyData);
-
+function getDeliciousData()
+{
     /* user login at delicious */
     var url = 'http://feeds.delicious.com/v2/json/';
     var params = {};
@@ -63,6 +94,15 @@ document.observe('dom:loaded', function(){
     params = {};
     /* requesting user information from delicious */
     makeCachedRequest(url+deliciousUsername, callback, params, 0);
+}
+
+document.observe('dom:loaded', function(){
+
+    var req = opensocial.newDataRequest();
+    var fields = ['deliciousUsername', 'bookmarksShowed'];
+    req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.VIEWER), "viewer");
+    req.add(req.newFetchPersonAppDataRequest("VIEWER", fields), "viewer_data");
+    req.send(handleRequestMyData);
 });
 
 function processDeliciousUserBookmarks(bookmarks){
@@ -76,7 +116,7 @@ function processDeliciousUserBookmarks(bookmarks){
         container.insert(url_box.insert(a));
         container.insert(descript.insert(new Element('q').update(jsdata.n)));
         container.insert(foot.insert('Saved: '+jsdata.dt));
-        $('delicious').insert(container);
+        $('delicious').update(container);
 //         $('delicious').insert(' -- saved '+jsdata.dt);
 //         $('delicious').insert(new Element('br'));
 //         $('delicious').insert(new Element('q').update(jsdata.n));

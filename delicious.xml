@@ -11,7 +11,6 @@
         <link type="text/css" href="http://github.com/fabricioferracioli/opensocialdelicious.git/css/osd.css" rel="stylesheet">
 
         <div id="delicious">
-            <h2>Minhas Bookmarks</h2>
         </div>
 
         <div id="user_data">
