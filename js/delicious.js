@@ -1,5 +1,5 @@
-var deliciousUsername = 'fabricioferracioli';
-var bookmarksShowed = 20;
+var deliciousUsername = '';
+var bookmarksShowed = '';
 
 function makeCachedRequest(url, callback, params, refreshInterval) {
     params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.JSON;
@@ -22,7 +22,34 @@ function makeJSONRequest(url, response, params)
     gadgets.io.makeRequest(url, response, params);
 };
 
+function setInitialDeliciousInfo(data)
+{
+    deliciousUsername = 'fabricioferracioli';
+    if (data['deliciousUsername'] != '')
+        deliciousUsername = data['deliciousUsername'];
+
+    bookmarksShowed = 20;
+    if (data['bookmarksShowed'] != '')
+        bookmarksShowed = data['bookmarksShowed'];
+}
+
+function handleRequestMyData(data)
+{
+    var viewer_data =  data.get('viewer_data');
+    var viewer = data.get('viewer');
+    var me = viewer.getData();
+    var deliciousData = viewer_data.getData();
+    setInitialDeliciousInfo(deliciousData[me.getId()]);
+}
+
 document.observe('dom:loaded', function(){
+
+    var req = opensocial.newDataRequest();
+    var fields = ['deliciousUsername', 'bookmarksShowed'];
+    req.add(req.newFetchPersonRequest(opensocial.DataRequest.PersonId.VIEWER), "viewer");
+    req.add(req.newFetchPersonAppDataRequest("VIEWER", fields), "viewer_data");
+    req.send(handleRequestMyData);
+
     /* user login at delicious */
     var url = 'http://feeds.delicious.com/v2/json/';
     var params = {};

@@ -3,6 +3,8 @@
     width: 95%;
     border: 2px #064780 solid;
     color: #A0C2DE;
+    left: 50%;
+    border-left: -47%;
 }
 .url
 {
