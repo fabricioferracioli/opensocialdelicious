@@ -117,10 +117,6 @@ function processDeliciousUserBookmarks(bookmarks){
         container.insert(descript.insert(new Element('q').update(jsdata.n)));
         container.insert(foot.insert('Saved: '+jsdata.dt));
         $('delicious').update(container);
-//         $('delicious').insert(' -- saved '+jsdata.dt);
-//         $('delicious').insert(new Element('br'));
-//         $('delicious').insert(new Element('q').update(jsdata.n));
-//         $('delicious').insert(new Element('br'));
     });
 }
 
