@@ -130,6 +130,3 @@ function processDeliciousUserInfo(info){
     $('user_data').insert(new Element('br'));
     $('user_data').insert(new Element('a', {href: 'Visit '+person+' at delicious'}));
 }
-
-
-
