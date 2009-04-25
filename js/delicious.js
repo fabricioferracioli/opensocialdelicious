@@ -50,8 +50,8 @@ function firstUsage()
 
     $('delicious').insert(delicious_form);
     $('sendbutton').observe('click', function(evt) {
-        req.add(req.newUpdatePersonAppDataRequest("VIEWER", "deliciousUsername", $F('username'));
-        req.add(req.newUpdatePersonAppDataRequest("VIEWER", "bookmarksShowed", $F('qtd'));
+        req.add(req.newUpdatePersonAppDataRequest("VIEWER", "deliciousUsername", $F('username')));
+        req.add(req.newUpdatePersonAppDataRequest("VIEWER", "bookmarksShowed", $F('qtd')));
         req.send(handlePopulateMyAppData, "update_appdata");
     });
 }
