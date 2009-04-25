@@ -33,7 +33,6 @@ function handlePopulateMyAppData(data)
 
 function firstUsage()
 {
-    console.log('firstUsage');
     delicious_form = new Element('form', {name: 'deliciousInfo'});
     label_username = new Element('label', {for: 'username'}).update('Delicious Username: ');
     username = new Element('input', {type: 'text', name: 'deliciousUsername', id: 'username'});
@@ -82,7 +81,6 @@ function handleRequestMyData(data)
 
 function getDeliciousData()
 {
-    console.log('getDeliciousData');
     /* user login at delicious */
     var url = 'http://feeds.delicious.com/v2/json/';
     var params = {};
